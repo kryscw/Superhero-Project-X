@@ -6,8 +6,19 @@
 [ext_resource type="Texture2D" uid="uid://b2paleomga2u8" path="res://icon.svg" id="3_21xkr"]
 [ext_resource type="Script" uid="uid://ryre07fbbumh" path="res://SuperHero.gd" id="4_6bp64"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kry3j"]
+skew = Vector2(-1, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_21xkr"]
+bg_color = Color(1, 1, 1, 1)
+skew = Vector2(-1, 0)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f60y1"]
 size = Vector2(40, 80)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kry3j"]
+radius = 36.0
+height = 106.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cvnsp"]
 texture = ExtResource("3_21xkr")
@@ -30,6 +41,17 @@ position = Vector2(1020, 362)
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1884285806]
 script = ExtResource("1_jjvhh")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Player" unique_id=1480351033]
+
+[node name="healthBar" type="ProgressBar" parent="Player/CanvasLayer" unique_id=677803011]
+offset_left = 61.0
+offset_top = 658.0
+offset_right = 444.0
+offset_bottom = 702.0
+theme_override_styles/background = SubResource("StyleBoxFlat_kry3j")
+theme_override_styles/fill = SubResource("StyleBoxFlat_21xkr")
+value = 100.0
 
 [node name="Sprite2D" type="ColorRect" parent="Player" unique_id=568579575]
 anchors_preset = 8
@@ -57,6 +79,12 @@ offset_right = 71.0
 offset_bottom = 7.0
 color = Color(0, 0, 0, 1)
 
+[node name="Area2D" type="Area2D" parent="Player" unique_id=1190099923]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Area2D" unique_id=702342402]
+position = Vector2(20, 40)
+shape = SubResource("CapsuleShape2D_kry3j")
+
 [node name="TileMap" type="TileMap" parent="." unique_id=866165645]
 tile_set = SubResource("TileSet_vgqql")
 format = 2
@@ -64,3 +92,5 @@ layer_0/tile_data = PackedInt32Array(327680, 3, 0, 327681, 3, 0, 327682, 3, 0, 3
 
 [node name="Node" type="Node2D" parent="." unique_id=2077973476]
 script = ExtResource("4_6bp64")
+
+[connection signal="body_shape_entered" from="Player/Area2D" to="Player" method="damage_area_entered"]

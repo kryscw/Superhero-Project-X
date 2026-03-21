@@ -14,6 +14,8 @@ var health: int = 100
 
 func _physics_process(delta: float) -> void:
 	
+	$CanvasLayer/healthBar.value = health
+	
 	var input_dir : Vector2 = getInput()
 	
 	calcJump()
@@ -24,6 +26,8 @@ func _physics_process(delta: float) -> void:
 		addFriction()
 	
 	move_and_slide()
+	
+
 
 func calcJump():
 	if Input.is_action_just_pressed("jump") && is_on_floor():
@@ -42,3 +46,8 @@ func addAcceleration(dir) -> void:
 ## Apply friction to body.
 func addFriction() -> void:
 	velocity.x = velocity.move_toward(Vector2.ZERO, FRICTION).x
+
+
+func damage_area_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+	if body.name.contains("Enemy"):
+		health -= 25

@@ -1,13 +1,13 @@
 extends Node2D
 
 var heroes = []
+var villains = []
 
 func _ready():
 	load_heroes_from_csv()
-	print("Heroes loaded:", heroes.size())
-
-	# TEST (remove later if needed)
-	print(heroes)
+	await get_tree().create_timer(1).timeout
+	print("HERO: " + str(heroes[0]))
+	print("VILLAIN: " + str(villains[0]))
 
 func load_heroes_from_csv():
 	var file = FileAccess.open("res://HackBeta - Superhero CSV.csv", FileAccess.READ)
@@ -34,7 +34,11 @@ func load_heroes_from_csv():
 			"name": data[0].strip_edges(),
 			"power": int(data[1]),
 			"strength": int(data[2]),
-			"magic": int(data[3])
+			"magic": int(data[3]),
+			"isvillain": data[18]
 		}
-
-		heroes.append(hero)
+	
+		if hero["isvillain"] == " False":
+			heroes.append(hero)
+		else:
+			villains.append(hero)
