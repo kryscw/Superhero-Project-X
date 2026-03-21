@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://bgxrqafrm5bep"]
+
+[ext_resource type="Script" uid="uid://dlstn7jh80fk" path="res://Main-Menu.gd" id="1_m625n"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wtjmy"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wugcc"]
+
+[node name="MainMenu" type="Control" unique_id=1323185670]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m625n")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1420163758]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -103.25
+offset_right = 200.0
+offset_bottom = 103.25
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="Button" type="Button" parent="VBoxContainer" unique_id=1595649307]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_wtjmy")
+text = "Start Game
+"
+
+[node name="Button2" type="Button" parent="VBoxContainer" unique_id=317441591]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_wtjmy")
+text = "Options
+"
+
+[node name="Button3" type="Button" parent="VBoxContainer" unique_id=1595283801]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_wtjmy")
+text = "Exit
+"
+
+[node name="Panel" type="Panel" parent="." unique_id=1045540627]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_wugcc")
