@@ -11,6 +11,9 @@ var currentSpeed: float = 300.0
 @onready var jumpVelocity: float = ((2.0 * jumpHeight) / jumpTimeToPeak) * -1
 
 var health: int = 100
+var dash: int = 100
+
+
 
 func _physics_process(delta: float) -> void:
 	
@@ -24,6 +27,21 @@ func _physics_process(delta: float) -> void:
 		addAcceleration(input_dir)
 	else:
 		addFriction()
+		
+	if Input.is_action_just_pressed("dash") && self.get_collision_layer_value(2) == true && dash == 100:
+		velocity.x += input_dir.x * 1800
+		self.set_collision_layer_value(2, false)
+		self.set_collision_mask_value(2, false)
+		$Area2D/CollisionShape2D.disabled = true
+		$afterImage.emitting = true
+		$CanvasLayer/dashTimer.start()
+		dash = 0
+		$CanvasLayer/dashBar.value = dash
+		await get_tree().create_timer(0.5).timeout
+		self.set_collision_layer_value(2, true)
+		self.set_collision_mask_value(2, true)
+		$Area2D/CollisionShape2D.disabled = false
+		$afterImage.emitting = false
 	
 	move_and_slide()
 	
@@ -50,4 +68,11 @@ func addFriction() -> void:
 
 func damage_area_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
 	if body.name.contains("Enemy"):
-		health -= 25
+		health -= body.damageDealing
+
+
+func _on_dash_timer_timeout() -> void:
+	dash += 5
+	$CanvasLayer/dashBar.value = dash
+	if dash == 100:
+		$CanvasLayer/dashTimer.stop()

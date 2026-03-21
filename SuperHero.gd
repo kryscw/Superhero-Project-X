@@ -1,5 +1,7 @@
 extends Node2D
 
+## REF superIndex
+
 var heroes = []
 var villains = []
 
@@ -28,7 +30,6 @@ func _ready():
 		if data.size() < 2:
 			continue
 
-		# 👇 GET LAST COLUMN (THIS FIXES EVERYTHING)
 		var is_villain_raw = data[data.size() - 1].strip_edges().to_lower()
 
 		var is_villain = (is_villain_raw == "true")
@@ -37,7 +38,8 @@ func _ready():
 			"name": data[0].strip_edges(),
 			"power": int(data[1]),
 			"strength": int(data[2]),
-			"magic": int(data[3])
+			"magic": int(data[3]),
+			"hometown": data[13].strip_edges()
 		}
 
 		if is_villain:
