@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://dht3s2whll8jk"]
+
+[ext_resource type="Script" uid="uid://cmoterefmarvj" path="res://Scenes/player.gd" id="1_v0iea"]
+[ext_resource type="Texture2D" uid="uid://b2paleomga2u8" path="res://icon.svg" id="2_cvnsp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f60y1"]
+size = Vector2(10, 20)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cvnsp"]
+texture = ExtResource("2_cvnsp")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_vgqql"]
+tile_size = Vector2i(128, 128)
+physics_layer_0/collision_layer = 1
+sources/3 = SubResource("TileSetAtlasSource_cvnsp")
+
+[node name="Node2D" type="Node2D" unique_id=721105279]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1884285806]
+script = ExtResource("1_v0iea")
+
+[node name="Sprite2D" type="ColorRect" parent="CharacterBody2D" unique_id=568579575]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -10.0
+offset_right = 5.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1563514273]
+shape = SubResource("RectangleShape2D_f60y1")
+
+[node name="TileMap" type="TileMap" parent="." unique_id=866165645]
+scale = Vector2(0.25, 0.25)
+tile_set = SubResource("TileSet_vgqql")
+format = 2
+layer_0/tile_data = PackedInt32Array(65536, 3, 0, 65537, 3, 0, 65538, 3, 0, 65539, 3, 0, 65540, 3, 0, 65541, 3, 0, 131071, 3, 0, 131070, 3, 0)

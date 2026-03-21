@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://2i3dhs3nyfdw"
+
+[deps]
+
+files=["res://Scenes/HackBeta - Superhero CSV. Power.translation", "res://Scenes/HackBeta - Superhero CSV. Strength.translation", "res://Scenes/HackBeta - Superhero CSV. Magic.translation", "res://Scenes/HackBeta - Superhero CSV. Intelligence.translation", "res://Scenes/HackBeta - Superhero CSV. Speed.translation", "res://Scenes/HackBeta - Superhero CSV. Defense.translation", "res://Scenes/HackBeta - Superhero CSV. Poison.translation", "res://Scenes/HackBeta - Superhero CSV. Rage.translation", "res://Scenes/HackBeta - Superhero CSV. Corrupted.translation", "res://Scenes/HackBeta - Superhero CSV. Evilness.translation", "res://Scenes/HackBeta - Superhero CSV. Age.translation", "res://Scenes/HackBeta - Superhero CSV. Personality.translation", "res://Scenes/HackBeta - Superhero CSV. Hometown.translation", "res://Scenes/HackBeta - Superhero CSV. Favorite.translation", "res://Scenes/HackBeta - Superhero CSV. Weakness.translation", "res://Scenes/HackBeta - Superhero CSV. Height.translation", "res://Scenes/HackBeta - Superhero CSV. Weight.translation", "res://Scenes/HackBeta - Superhero CSV. isVillain.translation", "res://Scenes/HackBeta - Superhero CSV. isLiving.translation", "res://Scenes/HackBeta - Superhero CSV. isEmployed.translation", "res://Scenes/HackBeta - Superhero CSV. isHuman.translation"]
+
+source_file="res://Scenes/HackBeta - Superhero CSV.csv"
+dest_files=["res://Scenes/HackBeta - Superhero CSV. Power.translation", "res://Scenes/HackBeta - Superhero CSV. Strength.translation", "res://Scenes/HackBeta - Superhero CSV. Magic.translation", "res://Scenes/HackBeta - Superhero CSV. Intelligence.translation", "res://Scenes/HackBeta - Superhero CSV. Speed.translation", "res://Scenes/HackBeta - Superhero CSV. Defense.translation", "res://Scenes/HackBeta - Superhero CSV. Poison.translation", "res://Scenes/HackBeta - Superhero CSV. Rage.translation", "res://Scenes/HackBeta - Superhero CSV. Corrupted.translation", "res://Scenes/HackBeta - Superhero CSV. Evilness.translation", "res://Scenes/HackBeta - Superhero CSV. Age.translation", "res://Scenes/HackBeta - Superhero CSV. Personality.translation", "res://Scenes/HackBeta - Superhero CSV. Hometown.translation", "res://Scenes/HackBeta - Superhero CSV. Favorite.translation", "res://Scenes/HackBeta - Superhero CSV. Weakness.translation", "res://Scenes/HackBeta - Superhero CSV. Height.translation", "res://Scenes/HackBeta - Superhero CSV. Weight.translation", "res://Scenes/HackBeta - Superhero CSV. isVillain.translation", "res://Scenes/HackBeta - Superhero CSV. isLiving.translation", "res://Scenes/HackBeta - Superhero CSV. isEmployed.translation", "res://Scenes/HackBeta - Superhero CSV. isHuman.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true
