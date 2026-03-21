@@ -14,14 +14,16 @@ func _process(delta: float) -> void:
 		queue_free()
 
 func _on_damage_area_hit(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
-<<<<<<< HEAD
-	print("AHHHH!")
-	## TODO (SUMIT) - lose health
-	
+	if body is CharacterBody2D && body != player && body != self:
+		body.queue_free()
+		health -= damage
+
 
 ## ── Pick a random enemy ─────────────────────────
+var enemies = []
 var shuffled_enemies = []
 var enemy_index = 0
+
 
 func _ready():
 	shuffled_enemies = enemies.duplicate()
@@ -32,18 +34,13 @@ func _pick_random_enemy() -> void:
 		return
 
 	if enemy_index >= shuffled_enemies.size():
-		_game_completed()
+		#_game_completed()
 		return
 
 	var e = shuffled_enemies[enemy_index]
 	enemy_index += 1
 
-	enemy_name = e["name"]
-	power      = e["power"]
-	strength   = e["strength"]
-	magic      = e["magic"]
-=======
-	if body is CharacterBody2D && body != player && body != self:
-		body.queue_free()
-		health -= damage
->>>>>>> 4490ca1640190f927c0409eb948991ca318c9af0
+	var enemy_name = e["name"]
+	var power      = e["power"]
+	var strength   = e["strength"]
+	var magic      = e["magic"]
