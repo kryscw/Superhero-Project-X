@@ -71,14 +71,26 @@ process_material = SubResource("ParticleProcessMaterial_kry3j")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Player" unique_id=1480351033]
 
+[node name="dashBar" type="ProgressBar" parent="Player/CanvasLayer" unique_id=1308938094]
+offset_left = 32.0
+offset_top = 606.0
+offset_right = 410.0
+offset_bottom = 633.0
+value = 100.0
+show_percentage = false
+
 [node name="healthBar" type="ProgressBar" parent="Player/CanvasLayer" unique_id=677803011]
 offset_left = 61.0
-offset_top = 658.0
+offset_top = 640.0
 offset_right = 444.0
 offset_bottom = 702.0
 theme_override_styles/background = SubResource("StyleBoxFlat_kry3j")
 theme_override_styles/fill = SubResource("StyleBoxFlat_21xkr")
 value = 100.0
+show_percentage = false
+
+[node name="dashTimer" type="Timer" parent="Player/CanvasLayer" unique_id=1434281301]
+wait_time = 0.1
 
 [node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=1137542419]
 position = Vector2(20, 39)
@@ -116,4 +128,22 @@ layer_0/tile_data = PackedInt32Array(327680, 3, 0, 327681, 3, 0, 327682, 3, 0, 3
 [node name="Node" type="Node2D" parent="." unique_id=2077973476]
 script = ExtResource("4_6bp64")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2106179808]
+
+[node name="enemyLabel" type="Label" parent="CanvasLayer" unique_id=1196273812]
+offset_left = 390.0
+offset_right = 869.0
+offset_bottom = 70.0
+theme_override_font_sizes/font_size = 51
+text = "THE FIERCE VILLIAN"
+
+[node name="underEnemyLabel" type="Label" parent="CanvasLayer" unique_id=440991946]
+offset_left = 390.0
+offset_top = 73.0
+offset_right = 869.0
+offset_bottom = 143.0
+theme_override_font_sizes/font_size = 51
+text = "THE FIERCE VILLIAN"
+
+[connection signal="timeout" from="Player/CanvasLayer/dashTimer" to="Player" method="_on_dash_timer_timeout"]
 [connection signal="body_shape_entered" from="Player/Area2D" to="Player" method="damage_area_entered"]

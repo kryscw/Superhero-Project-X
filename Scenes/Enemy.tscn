@@ -40,6 +40,13 @@ offset_right = 20.0
 offset_bottom = 40.0
 color = Color(0.8115776, 1.853034e-06, 3.85046e-07, 1)
 
+[node name="nameLabel" type="Label" parent="." unique_id=1477549418]
+offset_left = -93.0
+offset_top = -97.0
+offset_right = 94.0
+offset_bottom = -74.0
+horizontal_alignment = 1
+
 [node name="healthBar" type="ProgressBar" parent="." unique_id=270579407]
 offset_left = -50.0
 offset_top = -70.0
