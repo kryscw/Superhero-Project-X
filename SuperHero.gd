@@ -1,5 +1,7 @@
 extends Node2D
 
+## REF superIndex
+
 var heroes = []
 var villains = []
 

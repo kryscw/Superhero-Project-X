@@ -24,6 +24,18 @@ func _physics_process(delta: float) -> void:
 		addAcceleration(input_dir)
 	else:
 		addFriction()
+		
+	if Input.is_action_just_pressed("dash") && self.get_collision_layer_value(2) == true:
+		velocity.x += input_dir.x * 1800
+		self.set_collision_layer_value(2, false)
+		self.set_collision_mask_value(2, false)
+		$Area2D/CollisionShape2D.disabled = true
+		$afterImage.emitting = true
+		await get_tree().create_timer(0.5).timeout
+		self.set_collision_layer_value(2, true)
+		self.set_collision_mask_value(2, true)
+		$Area2D/CollisionShape2D.disabled = false
+		$afterImage.emitting = false
 	
 	move_and_slide()
 	

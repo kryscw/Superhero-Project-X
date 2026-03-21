@@ -1,10 +1,26 @@
 [gd_scene format=3 uid="uid://dht3s2whll8jk"]
 
+[ext_resource type="Script" uid="uid://dax5yhtix6qme" path="res://Scenes/main.gd" id="1_6bp64"]
 [ext_resource type="Script" uid="uid://cmoterefmarvj" path="res://Scenes/player.gd" id="1_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://3birffwrsrtu" path="res://Scenes/Enemy.tscn" id="1_kry3j"]
 [ext_resource type="Script" uid="uid://cb8olv6pxb5w" path="res://Scenes/weapon_rot.gd" id="2_kry3j"]
 [ext_resource type="Texture2D" uid="uid://b2paleomga2u8" path="res://icon.svg" id="3_21xkr"]
 [ext_resource type="Script" uid="uid://ryre07fbbumh" path="res://SuperHero.gd" id="4_6bp64"]
+[ext_resource type="Texture2D" uid="uid://5elboxypj8bh" path="res://Sprites/Screenshot 2026-03-21 at 4.30.51 PM.png" id="4_21xkr"]
+
+[sub_resource type="Gradient" id="Gradient_21xkr"]
+offsets = PackedFloat32Array(0, 0.51229507)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6bp64"]
+gradient = SubResource("Gradient_21xkr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kry3j"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_min = 0.089999996
+scale_max = 0.089999996
+color_ramp = SubResource("GradientTexture1D_6bp64")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kry3j"]
 skew = Vector2(-1, 0)
@@ -31,16 +47,27 @@ texture_region_size = Vector2i(128, 128)
 
 [sub_resource type="TileSet" id="TileSet_vgqql"]
 tile_size = Vector2i(128, 128)
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 3
+physics_layer_0/collision_mask = 3
 sources/3 = SubResource("TileSetAtlasSource_cvnsp")
 
-[node name="Node2D" type="Node2D" unique_id=721105279]
+[node name="Main" type="Node2D" unique_id=721105279]
+script = ExtResource("1_6bp64")
 
 [node name="Enemy" parent="." unique_id=229272389 instance=ExtResource("1_kry3j")]
 position = Vector2(1020, 362)
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1884285806]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_jjvhh")
+
+[node name="afterImage" type="GPUParticles2D" parent="Player" unique_id=658371361]
+position = Vector2(20, 39)
+emitting = false
+amount = 16
+texture = ExtResource("4_21xkr")
+process_material = SubResource("ParticleProcessMaterial_kry3j")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Player" unique_id=1480351033]
 
@@ -53,16 +80,10 @@ theme_override_styles/background = SubResource("StyleBoxFlat_kry3j")
 theme_override_styles/fill = SubResource("StyleBoxFlat_21xkr")
 value = 100.0
 
-[node name="Sprite2D" type="ColorRect" parent="Player" unique_id=568579575]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_right = 40.0
-offset_bottom = 80.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=1137542419]
+position = Vector2(20, 39)
+scale = Vector2(0.089711346, 0.089711346)
+texture = ExtResource("4_21xkr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=1563514273]
 position = Vector2(20, 40)
@@ -80,6 +101,8 @@ offset_bottom = 7.0
 color = Color(0, 0, 0, 1)
 
 [node name="Area2D" type="Area2D" parent="Player" unique_id=1190099923]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Area2D" unique_id=702342402]
 position = Vector2(20, 40)
