@@ -5,6 +5,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vgqql"]
 
 [node name="Bullet" type="CharacterBody2D" unique_id=378807127]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_xjght")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=948850406]
@@ -16,4 +18,7 @@ color = Color(1, 1, 0, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=379280166]
 shape = SubResource("RectangleShape2D_vgqql")
-disabled = true
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1598458522]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_exit"]

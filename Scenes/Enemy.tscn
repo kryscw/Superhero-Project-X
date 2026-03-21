@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://3birffwrsrtu"]
+
+[ext_resource type="Script" uid="uid://bow1asa4dg8mg" path="res://Scenes/enemy.gd" id="1_m1htj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m1htj"]
+size = Vector2(48, 88)
+
+[node name="Enemy" type="CharacterBody2D" unique_id=229272389]
+script = ExtResource("1_m1htj")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=228674368]
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+offset_bottom = 40.0
+color = Color(0.8115776, 1.853034e-06, 3.85046e-07, 1)
+
+[node name="damageArea" type="Area2D" parent="." unique_id=1978341778]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="damageArea" unique_id=1790298330]
+shape = SubResource("RectangleShape2D_m1htj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1676795548]
+shape = SubResource("RectangleShape2D_m1htj")
+
+[connection signal="body_shape_entered" from="damageArea" to="." method="_on_damage_area_hit"]

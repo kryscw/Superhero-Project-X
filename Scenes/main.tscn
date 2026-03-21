@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dht3s2whll8jk"]
 
 [ext_resource type="Script" uid="uid://cmoterefmarvj" path="res://Scenes/player.gd" id="1_jjvhh"]
+[ext_resource type="PackedScene" uid="uid://3birffwrsrtu" path="res://Scenes/Enemy.tscn" id="1_kry3j"]
 [ext_resource type="Script" uid="uid://cb8olv6pxb5w" path="res://Scenes/weapon_rot.gd" id="2_kry3j"]
 [ext_resource type="Texture2D" uid="uid://b2paleomga2u8" path="res://icon.svg" id="3_21xkr"]
 [ext_resource type="Script" uid="uid://ryre07fbbumh" path="res://SuperHero.gd" id="4_6bp64"]
@@ -23,6 +24,9 @@ physics_layer_0/collision_layer = 1
 sources/3 = SubResource("TileSetAtlasSource_cvnsp")
 
 [node name="Node2D" type="Node2D" unique_id=721105279]
+
+[node name="Enemy" parent="." unique_id=229272389 instance=ExtResource("1_kry3j")]
+position = Vector2(1020, 362)
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1884285806]
 script = ExtResource("1_jjvhh")

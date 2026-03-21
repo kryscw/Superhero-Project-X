@@ -10,6 +10,7 @@ var currentSpeed: float = 300.0
 @export var jumpTimeToDescent : float = 0.1
 @onready var jumpVelocity: float = ((2.0 * jumpHeight) / jumpTimeToPeak) * -1
 
+var health: int = 100
 
 func _physics_process(delta: float) -> void:
 	
