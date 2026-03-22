@@ -70,7 +70,7 @@ func addFriction() -> void:
 
 
 func damage_area_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
-	if body.name.contains("Enemy"):
+	if body.name.contains("Enemy") || body.name.to_lower().contains("bullet"):
 		health -= body.damageDealing
 
 

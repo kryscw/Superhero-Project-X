@@ -1,0 +1,37 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://b305etseex8q"]
+
+[ext_resource type="Texture2D" uid="uid://bef0vokqfjqhl" path="res://Sprites/Jonathan.png" id="1_sd7j0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kpr8r"]
+atlas = ExtResource("1_sd7j0")
+region = Rect2(0, 0, 82, 143)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sd7j0"]
+atlas = ExtResource("1_sd7j0")
+region = Rect2(0, 0, 82, 143)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k007v"]
+atlas = ExtResource("1_sd7j0")
+region = Rect2(82, 0, 82, 143)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kpr8r")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sd7j0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k007v")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]

@@ -12,6 +12,18 @@ var strength
 var magic
 var hometown
 @onready var main = get_tree().current_scene
+enum STATE_MACHINE {
+	CHARGE,
+	WALK,
+	RUN,
+	SHIELD
+}
+var attacks = ["AOE", "BULLET"]
+var bullet = preload("res://Scenes/bulletEvil.tscn")
+
+var bulletSpeed = 250
+
+var currentState = STATE_MACHINE.WALK
 
 var soundfont_em = ["hit_em", "hit_em2", "hit_em3", "hit_em4", "hit_em5"]
 var soundfont_sumit = ["enemy_hitsumit", "enemy_hitsumit2", "enemy_hitsumit3"]
@@ -19,12 +31,25 @@ var soundfonts = [soundfont_em, soundfont_sumit]
 
 var soundfont = soundfonts[randi_range(0, soundfonts.size()-1)]
 
+
+
 func _process(_delta: float) -> void:
 	$healthBar.value = remap(health, 0, maxHealth, 0.0, 100)
 	if main.gameStarted:
-		velocity = (player.global_position - global_position).normalized() * speed
-		velocity.y += 800
-		move_and_slide()
+		if currentState == STATE_MACHINE.SHIELD: damage = 0
+		else: damage = 25
+		if currentState == STATE_MACHINE.WALK || currentState == STATE_MACHINE.RUN:
+			if currentState == STATE_MACHINE.WALK: speed = 200.0
+			else: speed = 400.0
+			$AnimatedSprite2D.play("walk")
+			velocity = (player.global_position - global_position).normalized() * speed
+			if velocity.x > 0: $AnimatedSprite2D.flip_h = true
+			elif velocity.x < 0: $AnimatedSprite2D.flip_h = false
+		else:
+			$AnimatedSprite2D.play("idle")
+			velocity.x = 0
+	velocity.y += 800
+	move_and_slide()
 	if health <= 0:
 		queue_free()
 		print("YOU WIN!")
@@ -34,17 +59,43 @@ func _on_damage_area_hit(_body_rid: RID, body: Node2D, _body_shape_index: int, _
 	if body is CharacterBody2D && body != player && body != self:
 		body.queue_free()
 		health -= damage
-		$Hit.stream = load("res://Audio/" + soundfont[randi_range(0, soundfont.size()-1)] + ".ogg")
-		$Hit.play()
+		if !currentState == STATE_MACHINE.SHIELD:
+			$Hit.stream = load("res://Audio/" + soundfont[randi_range(0, soundfont.size()-1)] + ".ogg")
+			$Hit.play()
+		else:
+			$Hit.stream = load("res://Audio/enemy_block.ogg")
+			$Hit.play()
 
-
-## ── Pick a random enemy ─────────────────────────
 var enemies = superIndex.villains
 var shuffled_enemies = []
 var enemy_index = 0
 
+func makeBullet():
+	print("BULLETE")
+	var x = bullet.instantiate()
+	x.global_position = self.global_position
+	x.direction = (player.global_position - global_position).normalized() * bulletSpeed
+	get_tree().current_scene.add_child(x)
+	
+func attack():
+	match attacks[randi_range(0, attacks.size()-1)]:
+		"AOE":
+			print("AOE")
+		"BULLET":
+			for i in 5:
+				makeBullet()
+				await get_tree().create_timer(0.25).timeout
+
+func _on_state_timer_timeout() -> void:
+	if currentState == STATE_MACHINE.CHARGE: attack()
+	$stateTimer.wait_time = randf_range(1, 3)
+	currentState = STATE_MACHINE.values()[randi_range(0, STATE_MACHINE.size()-1)]
+	if currentState == STATE_MACHINE.CHARGE: $stateTimer.wait_time = 0.35; print("CHARGING")
 
 func _ready():
+	$stateTimer.start()
+	$stateTimer.wait_time = randf_range(1, 3)
+	
 	shuffled_enemies = enemies.duplicate()
 	shuffled_enemies.shuffle()
 	_pick_random_enemy()
@@ -73,7 +124,7 @@ func _pick_random_enemy() -> void:
 	get_tree().current_scene.announceReady()
 	
 	print(power)
-	maxHealth = remap(power, 0, 30, 0, 200)
+	maxHealth = remap(power, 0, 30, 300, 600)
 	health = maxHealth
 	print(strength)
-	damageDealing = remap(strength, 0, 30, 0, 50)
+	damageDealing = remap(strength, 0, 30, 5, 50)

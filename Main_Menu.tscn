@@ -1,9 +1,11 @@
-[gd_scene format=3 uid="uid://bgxrqafrm5bep"]
+[gd_scene format=3 uid="uid://7hdhbd7fdbhf"]
 
 [ext_resource type="Script" uid="uid://dlstn7jh80fk" path="res://Main-Menu.gd" id="1_m625n"]
+[ext_resource type="FontFile" uid="uid://bu4086b28uott" path="res://Fonts/Light Stories.ttf" id="2_gtid3"]
+[ext_resource type="AudioStream" uid="uid://c22vqxbdjpx4p" path="res://Audio/computerBG.mp3" id="2_wugcc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wtjmy"]
-bg_color = Color(1, 1, 1, 1)
+bg_color = Color(0, 0, 0, 1)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
@@ -40,24 +42,27 @@ theme_override_constants/separation = 15
 
 [node name="Button" type="Button" parent="VBoxContainer" unique_id=1595649307]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 40
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_gtid3")
+theme_override_font_sizes/font_size = 60
 theme_override_styles/normal = SubResource("StyleBoxFlat_wtjmy")
 text = "Start Game
 "
 
 [node name="Button2" type="Button" parent="VBoxContainer" unique_id=317441591]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 40
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_gtid3")
+theme_override_font_sizes/font_size = 60
 theme_override_styles/normal = SubResource("StyleBoxFlat_wtjmy")
 text = "Options
 "
 
 [node name="Button3" type="Button" parent="VBoxContainer" unique_id=1595283801]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 40
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_gtid3")
+theme_override_font_sizes/font_size = 60
 theme_override_styles/normal = SubResource("StyleBoxFlat_wtjmy")
 text = "Exit
 "
@@ -71,6 +76,21 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_wugcc")
+
+[node name="Label" type="Label" parent="." unique_id=1072762290]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 642.0
+offset_right = 1226.0
+offset_bottom = 759.0
+theme_override_fonts/font = ExtResource("2_gtid3")
+theme_override_font_sizes/font_size = 31
+text = "I assure you that despite this looking like AI it's actually just my terrible human work
+~ Steve Jobless & Freshman Associates, No-Stack Developers"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1238568732]
+stream = ExtResource("2_wugcc")
+autoplay = true
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
