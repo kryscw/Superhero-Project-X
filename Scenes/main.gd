@@ -4,11 +4,14 @@ var gameStarted = false
 
 @onready var cam = $Camera2D
 
+var villainsDefeated = 0
+
 func _ready():
 	$CanvasLayer/AnimationPlayer.play("FadeIn")
 	await $CanvasLayer/AnimationPlayer.animation_finished
 	gameStarted = true
 	$Enemy.begin()
+	$Music.play()
 
 func announceReady():
 	
@@ -32,9 +35,15 @@ func announceReady():
 func win():
 	$Die.play()
 	print("yo it's the main script here... you WON!?!?!?!?!?")
-	$CanvasLayer/ThreeChoices.show()
+	if villainsDefeated == 2:
+		$CanvasLayer/WinDialog.show()
+		$Player.health = 100
+	else:
+		$CanvasLayer/ThreeChoices.show()
+	
 
 func restartGame():
+	villainsDefeated += 1
 	$CanvasLayer/ThreeChoices.hide()
 	gameStarted = false
 	var x = load("res://Scenes/Enemy.tscn").instantiate()
@@ -70,4 +79,13 @@ func _on_restart_pressed() -> void:
 
 
 func _on_menu_pressed() -> void:
+	get_tree().change_scene_to_file("res://Main_Menu.tscn")
+
+
+func _on_yes_pressed() -> void:
+	restartGame()
+	
+
+
+func _on_no_pressed() -> void:
 	get_tree().change_scene_to_file("res://Main_Menu.tscn")

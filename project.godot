@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="SuperheroProjectX"
-run/main_scene="uid://dht3s2whll8jk"
+run/main_scene="uid://db4o0hsdrbp17"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 

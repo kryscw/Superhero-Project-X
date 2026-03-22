@@ -73,6 +73,7 @@ var shuffled_enemies = []
 var enemy_index = 0
 
 func makeBullet():
+	if player == null: return
 	print("BULLETE")
 	var x = bullet.instantiate()
 	x.global_position = self.global_position
@@ -133,7 +134,7 @@ func _pick_random_enemy() -> void:
 	get_tree().current_scene.announceReady()
 	
 	print(power)
-	maxHealth = remap(power, 0, 30, 300, 600)
+	maxHealth = remap(power, 0, 30, 200, 400)
 	health = maxHealth
 	print(strength)
-	damageDealing = remap(strength, 0, 30, 5, 20)
+	damageDealing = remap(strength, 0, 30, 5, 15)

@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://dcghptghbboxo" path="res://Scenes/color_rect_2.gd" id="10_fdnlq"]
 [ext_resource type="FontFile" uid="uid://bu4086b28uott" path="res://Fonts/Light Stories.ttf" id="11_6iyac"]
 [ext_resource type="Script" uid="uid://bdpeh7vjwjseh" path="res://Scenes/ShakyCam.gd" id="11_d1ilt"]
+[ext_resource type="AudioStream" uid="uid://dxsjx7irlnoao" path="res://Audio/I need a new song_4.mp3" id="14_jkdf5"]
 
 [sub_resource type="Gradient" id="Gradient_21xkr"]
 offsets = PackedFloat32Array(0, 0.51229507)
@@ -447,9 +448,44 @@ offset_bottom = 528.0
 theme_override_font_sizes/font_size = 43
 text = "Back to Menu"
 
+[node name="WinDialog" type="Node2D" parent="CanvasLayer" unique_id=1056445843]
+visible = false
+
+[node name="Label" type="Label" parent="CanvasLayer/WinDialog" unique_id=1903118891]
+offset_left = 368.0
+offset_top = 181.0
+offset_right = 919.0
+offset_bottom = 310.0
+theme_override_fonts/font = ExtResource("11_6iyac")
+theme_override_font_sizes/font_size = 38
+text = "You defeated three villains and you win!
+Would you like to continue?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Yes" type="Button" parent="CanvasLayer/WinDialog" unique_id=2034107392]
+offset_left = 675.0
+offset_top = 333.0
+offset_right = 734.0
+offset_bottom = 385.0
+theme_override_font_sizes/font_size = 31
+text = "Yes"
+
+[node name="No" type="Button" parent="CanvasLayer/WinDialog" unique_id=622943485]
+offset_left = 545.0
+offset_top = 334.0
+offset_right = 604.0
+offset_bottom = 386.0
+theme_override_font_sizes/font_size = 31
+text = "No"
+
 [node name="Camera2D" type="Camera2D" parent="." unique_id=823699219]
 position = Vector2(642, 360)
 script = ExtResource("11_d1ilt")
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=2022593801]
+stream = ExtResource("14_jkdf5")
+volume_db = -15.0
 
 [connection signal="timeout" from="Player/CanvasLayer/dashTimer" to="Player" method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="Player/weaponRot/countdownTimer" to="Player/weaponRot" method="_on_countdown_timer_timeout"]
@@ -461,3 +497,5 @@ script = ExtResource("11_d1ilt")
 [connection signal="pressed" from="CanvasLayer/ThreeChoices/CenterContainer/HBoxContainer/damageUpgrade" to="." method="_on_damage_upgrade_pressed"]
 [connection signal="pressed" from="CanvasLayer/deathbeUponYe/restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="CanvasLayer/deathbeUponYe/menu" to="." method="_on_menu_pressed"]
+[connection signal="pressed" from="CanvasLayer/WinDialog/Yes" to="." method="_on_yes_pressed"]
+[connection signal="pressed" from="CanvasLayer/WinDialog/No" to="." method="_on_no_pressed"]

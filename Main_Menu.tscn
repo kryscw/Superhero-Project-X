@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://cfg1n0hpr7m8f" path="res://Sprites/BA6EC9D5-308B-45D1-A2D4-69DAC48CC063.jpeg" id="2_dnfjo"]
 [ext_resource type="FontFile" uid="uid://bu4086b28uott" path="res://Fonts/Light Stories.ttf" id="2_gtid3"]
 [ext_resource type="AudioStream" uid="uid://c22vqxbdjpx4p" path="res://Audio/computerBG.mp3" id="2_wugcc"]
+[ext_resource type="Script" uid="uid://bysxjb02o1hve" path="res://settings.gd" id="5_257up"]
+[ext_resource type="Script" uid="uid://0mfgj1cmknxa" path="res://keybindButton.gd" id="6_3mro0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wtjmy"]
 bg_color = Color(0, 0, 0, 1)
@@ -55,6 +57,14 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_wtjmy")
 text = "Start Game
 "
 
+[node name="Options" type="Button" parent="VBoxContainer" unique_id=2133876181]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_gtid3")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_wtjmy")
+text = "Options"
+
 [node name="Button3" type="Button" parent="VBoxContainer" unique_id=1595283801]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -102,10 +112,10 @@ text = "Superhero Project X"
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=836797235]
 layout_mode = 0
-offset_left = 392.0
-offset_top = 429.0
-offset_right = 889.0
-offset_bottom = 618.0
+offset_left = 1412.0
+offset_top = 718.0
+offset_right = 1909.0
+offset_bottom = 907.0
 color = Color(0, 0, 0, 1)
 
 [node name="Label" type="Label" parent="ColorRect" unique_id=495224364]
@@ -124,5 +134,150 @@ MOVE MOUSE TO POINT"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Settings" type="ColorRect" parent="." unique_id=506001177]
+visible = false
+layout_mode = 0
+offset_left = 428.0
+offset_top = 182.0
+offset_right = 834.0
+offset_bottom = 577.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+color = Color(0.69342947, 0.6934295, 0.69342947, 1)
+script = ExtResource("5_257up")
+
+[node name="Label2" type="Label" parent="Settings" unique_id=1955087436]
+layout_mode = 0
+offset_left = 117.0
+offset_top = 78.0
+offset_right = 235.0
+offset_bottom = 101.0
+theme_override_constants/outline_size = 13
+text = "Keybindings"
+
+[node name="leftLabel" type="Label" parent="Settings" unique_id=1479490693]
+layout_mode = 0
+offset_left = 117.0
+offset_top = 112.0
+offset_right = 235.0
+offset_bottom = 135.0
+theme_override_constants/outline_size = 13
+text = "Left"
+
+[node name="rightLabel" type="Label" parent="Settings" unique_id=1285670491]
+layout_mode = 0
+offset_left = 117.0
+offset_top = 145.0
+offset_right = 235.0
+offset_bottom = 168.0
+theme_override_constants/outline_size = 13
+text = "Right"
+
+[node name="jumpLabel" type="Label" parent="Settings" unique_id=592843811]
+layout_mode = 0
+offset_left = 117.0
+offset_top = 181.0
+offset_right = 235.0
+offset_bottom = 204.0
+theme_override_constants/outline_size = 13
+text = "Jump"
+
+[node name="dashLabel" type="Label" parent="Settings" unique_id=1904894299]
+layout_mode = 0
+offset_left = 117.0
+offset_top = 216.0
+offset_right = 235.0
+offset_bottom = 239.0
+theme_override_constants/outline_size = 13
+text = "Dash"
+
+[node name="shootLabel" type="Label" parent="Settings" unique_id=1572340325]
+layout_mode = 0
+offset_left = 117.0
+offset_top = 248.0
+offset_right = 235.0
+offset_bottom = 271.0
+theme_override_constants/outline_size = 13
+text = "Shoot"
+
+[node name="leftButton" type="Button" parent="Settings" unique_id=528503907 node_paths=PackedStringArray("label") groups=["hotkey_button"]]
+layout_mode = 0
+offset_left = 191.0
+offset_top = 108.0
+offset_right = 286.0
+offset_bottom = 139.0
+theme_override_constants/outline_size = 15
+toggle_mode = true
+text = "A"
+script = ExtResource("6_3mro0")
+label = NodePath("../leftLabel")
+
+[node name="rightButton" type="Button" parent="Settings" unique_id=398454787 node_paths=PackedStringArray("label") groups=["hotkey_button"]]
+layout_mode = 0
+offset_left = 191.0
+offset_top = 142.0
+offset_right = 286.0
+offset_bottom = 173.0
+theme_override_constants/outline_size = 15
+toggle_mode = true
+text = "D"
+script = ExtResource("6_3mro0")
+label = NodePath("../rightLabel")
+action_name = "right"
+
+[node name="jumpButton" type="Button" parent="Settings" unique_id=459487594 node_paths=PackedStringArray("label") groups=["hotkey_button"]]
+layout_mode = 0
+offset_left = 191.0
+offset_top = 178.0
+offset_right = 286.0
+offset_bottom = 209.0
+theme_override_constants/outline_size = 15
+toggle_mode = true
+text = "SPACE"
+script = ExtResource("6_3mro0")
+label = NodePath("../jumpLabel")
+action_name = "jump"
+
+[node name="dashButton" type="Button" parent="Settings" unique_id=1343409942 node_paths=PackedStringArray("label") groups=["hotkey_button"]]
+layout_mode = 0
+offset_left = 191.0
+offset_top = 212.0
+offset_right = 286.0
+offset_bottom = 243.0
+theme_override_constants/outline_size = 15
+toggle_mode = true
+text = "C"
+script = ExtResource("6_3mro0")
+label = NodePath("../dashLabel")
+action_name = "dash"
+
+[node name="shootButton" type="Button" parent="Settings" unique_id=1186801937 node_paths=PackedStringArray("label") groups=["hotkey_button"]]
+layout_mode = 0
+offset_left = 191.0
+offset_top = 246.0
+offset_right = 286.0
+offset_bottom = 277.0
+theme_override_constants/outline_size = 15
+toggle_mode = true
+text = "MOUSE1"
+script = ExtResource("6_3mro0")
+label = NodePath("../shootLabel")
+action_name = "shoot"
+
+[node name="exitButton" type="Button" parent="Settings" unique_id=197474294]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 350.0
+offset_right = 130.0
+offset_bottom = 381.0
+theme_override_constants/outline_size = 15
+text = "EXIT OPTIONS"
+
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button3" to="." method="_on_button_3_pressed"]
+[connection signal="toggled" from="Settings/leftButton" to="Settings/leftButton" method="_on_toggled"]
+[connection signal="toggled" from="Settings/rightButton" to="Settings/rightButton" method="_on_toggled"]
+[connection signal="toggled" from="Settings/jumpButton" to="Settings/jumpButton" method="_on_toggled"]
+[connection signal="toggled" from="Settings/dashButton" to="Settings/dashButton" method="_on_toggled"]
+[connection signal="toggled" from="Settings/shootButton" to="Settings/shootButton" method="_on_toggled"]
+[connection signal="pressed" from="Settings/exitButton" to="Settings" method="_on_exit_button_pressed"]
