@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://yearcyh3ooad"
+path="res://.godot/imported/another attempt_2.mp3-2e9908a9127313b264051ff08ec3772f.mp3str"
+
+[deps]
+
+source_file="res://Audio/another attempt_2.mp3"
+dest_files=["res://.godot/imported/another attempt_2.mp3-2e9908a9127313b264051ff08ec3772f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

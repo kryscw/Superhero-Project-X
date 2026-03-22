@@ -1,6 +1,6 @@
 extends Node2D
 
-var gameStarted = false
+var gameStarted = true
 
 func announceReady():
 	$CanvasLayer/labels/enemyLabel.text = "NOW FACING " + $Enemy.enemy_name.to_upper()

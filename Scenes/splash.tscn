@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://db4o0hsdrbp17"]
+
+[ext_resource type="Script" uid="uid://dyb66om2yaw04" path="res://Scenes/introSplash.gd" id="1_7xstc"]
+[ext_resource type="Texture2D" uid="uid://bn3ha78q3d406" path="res://Sprites/nostack.png" id="1_i8nxx"]
+[ext_resource type="AudioStream" uid="uid://dwvwlv2yo17il" path="res://Audio/nostack.ogg" id="2_t3al1"]
+
+[sub_resource type="Animation" id="Animation_7xstc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Nostack:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_t3al1"]
+resource_name = "intro"
+length = 4.0
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Nostack:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 3, 3.5),
+"transitions": PackedFloat32Array(4068.7307, 1, 9.189586, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_t3al1")
+}],
+"times": PackedFloat32Array(1)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7xstc"]
+_data = {
+&"RESET": SubResource("Animation_7xstc"),
+&"intro": SubResource("Animation_t3al1")
+}
+
+[node name="intro" type="Node2D" unique_id=397864476]
+script = ExtResource("1_7xstc")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1577077416]
+offset_left = -77.0
+offset_top = -46.0
+offset_right = 1352.0
+offset_bottom = 772.0
+color = Color(0, 0, 0, 1)
+
+[node name="Nostack" type="Sprite2D" parent="." unique_id=2020773248]
+position = Vector2(631, 347)
+texture = ExtResource("1_i8nxx")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1119792208]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1617234086]
+libraries/ = SubResource("AnimationLibrary_7xstc")
+autoplay = &"intro"

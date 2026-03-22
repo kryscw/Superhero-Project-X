@@ -15,8 +15,9 @@ var hometown
 
 var soundfont_em = ["hit_em", "hit_em2", "hit_em3", "hit_em4", "hit_em5"]
 var soundfont_sumit = ["enemy_hitsumit", "enemy_hitsumit2", "enemy_hitsumit3"]
+var soundfonts = [soundfont_em, soundfont_sumit]
 
-var soundfont = soundfont_em
+var soundfont = soundfonts[randi_range(0, soundfonts.size()-1)]
 
 func _process(_delta: float) -> void:
 	$healthBar.value = remap(health, 0, maxHealth, 0.0, 100)
