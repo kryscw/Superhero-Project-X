@@ -5,11 +5,17 @@ extends Control
 func _ready():
 	pass
 
-func _on_StartGame_pressed():
+
+
+func _on_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/main.tscn")
+	pass 
 
-func _on_Options_pressed():
-	pass
 
-func _on_Exit_pressed():
+func _on_button_2_pressed() -> void:
 	get_tree().quit()
+	pass # Replace with function body.
+
+
+func _on_button_3_pressed() -> void:
+	pass # Replace with function body.
