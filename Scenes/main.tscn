@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cfg1n0hpr7m8f" path="res://Sprites/BA6EC9D5-308B-45D1-A2D4-69DAC48CC063.jpeg" id="4_hptm8"]
 [ext_resource type="Texture2D" uid="uid://bhclvq51v71y1" path="res://Sprites/tilemaps.png" id="8_d1ilt"]
 [ext_resource type="AudioStream" uid="uid://slf1veyn42y1" path="res://Audio/villainpasta.mp3" id="9_ynf5e"]
+[ext_resource type="Script" uid="uid://dcghptghbboxo" path="res://Scenes/color_rect_2.gd" id="10_fdnlq"]
 [ext_resource type="FontFile" uid="uid://bu4086b28uott" path="res://Fonts/Light Stories.ttf" id="11_6iyac"]
 [ext_resource type="Script" uid="uid://bdpeh7vjwjseh" path="res://Scenes/ShakyCam.gd" id="11_d1ilt"]
 
@@ -27,12 +28,52 @@ scale_min = 0.089999996
 scale_max = 0.089999996
 color_ramp = SubResource("GradientTexture1D_6bp64")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fdnlq"]
+bg_color = Color(1, 1, 1, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kry3j"]
 skew = Vector2(-1, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_21xkr"]
 bg_color = Color(1, 1, 1, 1)
 skew = Vector2(-1, 0)
+
+[sub_resource type="Animation" id="Animation_6iyac"]
+resource_name = "Hit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fdnlq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fdnlq"]
+_data = {
+&"Hit": SubResource("Animation_6iyac"),
+&"RESET": SubResource("Animation_fdnlq")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f60y1"]
 size = Vector2(40, 80)
@@ -171,6 +212,7 @@ stream = ExtResource("3_344ge")
 volume_db = -10.0
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1884285806]
+position = Vector2(169, 343)
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_jjvhh")
@@ -189,6 +231,7 @@ offset_left = 32.0
 offset_top = 606.0
 offset_right = 410.0
 offset_bottom = 633.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_fdnlq")
 value = 100.0
 show_percentage = false
 
@@ -201,6 +244,9 @@ theme_override_styles/background = SubResource("StyleBoxFlat_kry3j")
 theme_override_styles/fill = SubResource("StyleBoxFlat_21xkr")
 value = 100.0
 show_percentage = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player/CanvasLayer/healthBar" unique_id=13044600]
+libraries/ = SubResource("AnimationLibrary_fdnlq")
 
 [node name="dashTimer" type="Timer" parent="Player/CanvasLayer" unique_id=1434281301]
 wait_time = 0.1
@@ -265,9 +311,36 @@ script = ExtResource("4_6bp64")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2106179808]
 
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer" unique_id=1848766559]
+modulate = Color(1, 1, 1, 0.1254902)
+offset_left = 872.00006
+offset_top = 549.0
+offset_right = 1369.0
+offset_bottom = 738.0
+scale = Vector2(0.77578187, 0.77578187)
+color = Color(0, 0, 0, 1)
+script = ExtResource("10_fdnlq")
+
+[node name="Label" type="Label" parent="CanvasLayer/ColorRect2" unique_id=276998842]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 1.0
+offset_right = 488.0
+offset_bottom = 193.0
+theme_override_fonts/font = ExtResource("11_6iyac")
+theme_override_font_sizes/font_size = 30
+text = "CONTROLS:
+WASD/ARROW KEYS - MOVE
+C - DASH THROUGH ENEMIES
+MOUSE1/X - SHOOT
+MOVE MOUSE TO POINT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=951349395]
 offset_right = 1280.0
 offset_bottom = 720.0
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="labels" type="Node2D" parent="CanvasLayer" unique_id=2082700873]
@@ -341,7 +414,7 @@ offset_right = 913.0
 offset_bottom = 300.0
 theme_override_fonts/font = ExtResource("11_6iyac")
 theme_override_font_sizes/font_size = 44
-text = "You defeated this boss...
+text = "You defeated this evil villain...
 now pick a reward!!!"
 horizontal_alignment = 1
 
@@ -381,6 +454,8 @@ script = ExtResource("11_d1ilt")
 [connection signal="timeout" from="Player/CanvasLayer/dashTimer" to="Player" method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="Player/weaponRot/countdownTimer" to="Player/weaponRot" method="_on_countdown_timer_timeout"]
 [connection signal="body_shape_entered" from="Player/Area2D" to="Player" method="damage_area_entered"]
+[connection signal="mouse_entered" from="CanvasLayer/ColorRect2" to="CanvasLayer/ColorRect2" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/ColorRect2" to="CanvasLayer/ColorRect2" method="_on_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/ThreeChoices/CenterContainer/HBoxContainer/fireRateUpgrade" to="." method="_on_fire_rate_upgrade_pressed"]
 [connection signal="pressed" from="CanvasLayer/ThreeChoices/CenterContainer/HBoxContainer/speedUpgrade" to="." method="_on_speed_upgrade_pressed"]
 [connection signal="pressed" from="CanvasLayer/ThreeChoices/CenterContainer/HBoxContainer/damageUpgrade" to="." method="_on_damage_upgrade_pressed"]

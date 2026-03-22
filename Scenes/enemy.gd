@@ -83,7 +83,7 @@ func attack():
 	if player == null: return
 	var dist = player.global_position - global_position
 	
-	if dist.x > 80:
+	if dist.x < 40:
 		for i in 3:
 			makeBullet()
 			await get_tree().create_timer(0.25).timeout
@@ -91,7 +91,7 @@ func attack():
 		$GPUParticles2D.emitting = true
 		for i in $areaOfEffect.get_overlapping_bodies():
 			if i.name.match("Player"):
-				i.health -= 10
+				i.damage(10)
 
 func _on_state_timer_timeout() -> void:
 	$stateTimer.wait_time = randf_range(1, 3)

@@ -96,6 +96,7 @@ offset_left = 384.0
 offset_top = 133.0
 offset_right = 913.0
 offset_bottom = 209.0
+theme_override_constants/outline_size = 24
 theme_override_font_sizes/font_size = 55
 text = "Superhero Project X"
 

@@ -16,7 +16,14 @@ var dash: int = 100
 
 @onready var main = get_tree().current_scene
 
+func damage(amount):
+	health -= amount
+	$CanvasLayer/healthBar/AnimationPlayer.play("Hit")
+
 func _physics_process(_delta: float) -> void:
+	if !main.gameStarted:
+		return
+	
 	
 	if health <= 0:
 		$"../CanvasLayer/deathbeUponYe".show()
@@ -48,8 +55,7 @@ func _physics_process(_delta: float) -> void:
 		$Area2D/CollisionShape2D.disabled = false
 		$afterImage.emitting = false
 	
-	if main.gameStarted:
-		move_and_slide()
+	move_and_slide()
 	
 
 
@@ -72,8 +78,8 @@ func addFriction() -> void:
 
 
 func damage_area_entered(_body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
-	if body.name.contains("Enemy"): health -= body.damageDealing
-	if body.is_in_group("evil bullets"): body.queue_free(); health -= 25
+	if body.name.contains("Enemy"): damage(body.damageDealing)
+	if body.is_in_group("evil bullets"): body.queue_free(); damage(25)
 
 
 func _on_dash_timer_timeout() -> void:

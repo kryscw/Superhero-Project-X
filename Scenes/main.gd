@@ -40,7 +40,8 @@ func restartGame():
 	var x = load("res://Scenes/Enemy.tscn").instantiate()
 	$CanvasLayer/newVillain.pitch_scale += 0.05
 	$Player.health = 100
-	x.global_position = Vector2(15, 15)
+	x.global_position = Vector2(1020, 362)
+	$Player.global_position = Vector2(169, 343)
 	add_child(x)
 	$CanvasLayer/AnimationPlayer.play("FadeIn")
 	await $CanvasLayer/AnimationPlayer.animation_finished
