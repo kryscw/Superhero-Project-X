@@ -34,7 +34,7 @@ func _ready():
 
 		var is_villain = (is_villain_raw == "true")
 
-		if !str(data[0]).to_lower().contains("woman") || !str(data[0]).to_lower().contains("girl"):
+		if !str(data[0]).strip_edges().to_lower().contains("woman") || !str(data[0]).strip_edges().to_lower().contains("girl"):
 			# We have no female voicelines so it would look weird lmao
 
 			var character = {

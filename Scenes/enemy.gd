@@ -59,6 +59,7 @@ func _on_damage_area_hit(_body_rid: RID, body: Node2D, _body_shape_index: int, _
 	if body is CharacterBody2D && body != player && body != self:
 		body.queue_free()
 		health -= damage
+		$Hit.pitch_scale = randf_range(0.95, 1.05)
 		if !currentState == STATE_MACHINE.SHIELD:
 			$Hit.stream = load("res://Audio/" + soundfont[randi_range(0, soundfont.size()-1)] + ".ogg")
 			$Hit.play()
@@ -82,7 +83,7 @@ func attack():
 		"AOE":
 			print("AOE")
 		"BULLET":
-			for i in 5:
+			for i in 3:
 				makeBullet()
 				await get_tree().create_timer(0.25).timeout
 

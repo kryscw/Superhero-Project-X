@@ -90,6 +90,7 @@ text = "I assure you that despite this looking like AI it's actually just my ter
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1238568732]
 stream = ExtResource("2_wugcc")
+pitch_scale = 0.9
 autoplay = true
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]

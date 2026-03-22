@@ -29,7 +29,7 @@ func _physics_process(delta: float) -> void:
 		addAcceleration(input_dir)
 	else:
 		addFriction()
-		
+	
 	if Input.is_action_just_pressed("dash") && self.get_collision_layer_value(2) == true && dash == 100:
 		velocity.x += input_dir.x * 1800
 		self.set_collision_layer_value(2, false)

@@ -4,11 +4,11 @@
 [ext_resource type="Script" uid="uid://cmoterefmarvj" path="res://Scenes/player.gd" id="1_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://3birffwrsrtu" path="res://Scenes/Enemy.tscn" id="1_kry3j"]
 [ext_resource type="Script" uid="uid://cb8olv6pxb5w" path="res://Scenes/weapon_rot.gd" id="2_kry3j"]
-[ext_resource type="Texture2D" uid="uid://b2paleomga2u8" path="res://icon.svg" id="3_21xkr"]
 [ext_resource type="AudioStream" uid="uid://xuf8a6nqomwc" path="res://Audio/enemy_die.ogg" id="3_344ge"]
 [ext_resource type="Script" uid="uid://ryre07fbbumh" path="res://SuperHero.gd" id="4_6bp64"]
 [ext_resource type="Texture2D" uid="uid://5elboxypj8bh" path="res://Sprites/Screenshot 2026-03-21 at 4.30.51 PM.png" id="4_21xkr"]
 [ext_resource type="Texture2D" uid="uid://cfg1n0hpr7m8f" path="res://Sprites/BA6EC9D5-308B-45D1-A2D4-69DAC48CC063.jpeg" id="4_hptm8"]
+[ext_resource type="Texture2D" uid="uid://bhclvq51v71y1" path="res://Sprites/tilemaps.png" id="8_d1ilt"]
 [ext_resource type="AudioStream" uid="uid://slf1veyn42y1" path="res://Audio/villainpasta.mp3" id="9_ynf5e"]
 [ext_resource type="Script" uid="uid://bdpeh7vjwjseh" path="res://Scenes/ShakyCam.gd" id="11_d1ilt"]
 
@@ -40,20 +40,19 @@ size = Vector2(40, 80)
 radius = 36.0
 height = 106.0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cvnsp"]
-texture = ExtResource("3_21xkr")
-texture_region_size = Vector2i(128, 128)
-0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6iyac"]
+texture = ExtResource("8_d1ilt")
+texture_region_size = Vector2i(64, 64)
 1:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 
 [sub_resource type="TileSet" id="TileSet_vgqql"]
-tile_size = Vector2i(128, 128)
+tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 3
 physics_layer_0/collision_mask = 3
-sources/3 = SubResource("TileSetAtlasSource_cvnsp")
+sources/1 = SubResource("TileSetAtlasSource_6iyac")
 
 [sub_resource type="Animation" id="Animation_6bp64"]
 resource_name = "FadeIn"
@@ -159,7 +158,7 @@ _data = {
 script = ExtResource("1_6bp64")
 
 [node name="Ba6ec9d5308b45d1A2d469dac48cc063" type="Sprite2D" parent="." unique_id=2130203964]
-position = Vector2(642.00006, 202)
+position = Vector2(642.00006, 457.00003)
 scale = Vector2(0.841875, 0.8954802)
 texture = ExtResource("4_hptm8")
 
@@ -240,7 +239,7 @@ shape = SubResource("CapsuleShape2D_kry3j")
 [node name="TileMap" type="TileMap" parent="." unique_id=866165645]
 tile_set = SubResource("TileSet_vgqql")
 format = 2
-layer_0/tile_data = PackedInt32Array(327680, 3, 0, 327681, 3, 0, 327682, 3, 0, 327683, 3, 0, 327684, 3, 0, 327685, 3, 0, 327686, 3, 0, 327689, 3, 0, 327688, 3, 0, 327687, 3, 0, 393215, 3, 0, 327679, 3, 0, 262143, 3, 0, 196607, 3, 0, 131071, 3, 0, 65535, 3, 0, 65534, 3, 0, 131070, 3, 0, 196606, 3, 0, 262142, 3, 0, 327678, 3, 0, 393214, 3, 0, -2, 3, 0, -1, 3, 0, -65526, 3, 0, 10, 3, 0, 65546, 3, 0, 131082, 3, 0, 196618, 3, 0, 262154, 3, 0, 327690, 3, 0, 327691, 3, 0, 262155, 3, 0, 196619, 3, 0, 131083, 3, 0, 65547, 3, 0, 11, 3, 0, -65525, 3, 0, -131061, 3, 0, -131062, 3, 0, -65538, 3, 0, 262153, 3, 0, 262152, 3, 0, 262151, 3, 0, 262150, 3, 0, 262149, 3, 0, 262148, 3, 0, 262147, 3, 0, 262146, 3, 0, 262145, 3, 0, 262144, 3, 0, -65537, 3, 0)
+layer_0/tile_data = PackedInt32Array(393215, 65537, 0, 327679, 65537, 0, 262143, 65537, 0, 196607, 65537, 0, 131071, 65537, 0, 65535, 65537, 0, 65534, 65537, 0, 131070, 65537, 0, 196606, 65537, 0, 262142, 65537, 0, 327678, 65537, 0, 393214, 65537, 0, -2, 65537, 0, -1, 65537, 0, -65538, 65537, 0, -65537, 65537, 0, 458771, 65537, 0, 458770, 65537, 0, 458769, 65537, 0, 458768, 65537, 0, 458767, 65537, 0, 458766, 65537, 0, 458765, 65537, 0, 458764, 65537, 0, 458763, 65537, 0, 458762, 65537, 0, 458761, 65537, 0, 458760, 65537, 0, 458759, 65537, 0, 458758, 65537, 0, 458757, 65537, 0, 458756, 65537, 0, 458755, 65537, 0, 458754, 65537, 0, 458753, 65537, 0, 458752, 65537, 0, 524289, 1, 0, 524290, 1, 0, 524291, 1, 0, 524292, 1, 0, 524293, 1, 0, 524294, 1, 0, 524295, 1, 0, 524296, 1, 0, 524297, 1, 0, 524298, 1, 0, 524299, 1, 0, 524300, 1, 0, 524301, 1, 0, 524302, 1, 0, 524305, 1, 0, 524306, 1, 0, 524304, 1, 0, 524303, 1, 0, 589825, 1, 0, 589826, 1, 0, 589827, 1, 0, 589828, 1, 0, 589829, 1, 0, 589830, 1, 0, 589831, 1, 0, 589832, 1, 0, 589833, 1, 0, 589834, 1, 0, 589835, 1, 0, 589836, 1, 0, 589837, 1, 0, 589841, 1, 0, 589842, 1, 0, 589843, 1, 0, 524307, 1, 0, 589840, 1, 0, 589839, 1, 0, 589838, 1, 0, 589824, 1, 0, 655360, 1, 0, 655361, 1, 0, 655362, 1, 0, 655363, 1, 0, 655364, 1, 0, 655365, 1, 0, 655366, 1, 0, 655367, 1, 0, 655368, 1, 0, 655369, 1, 0, 655370, 1, 0, 655371, 1, 0, 655372, 1, 0, 655373, 1, 0, 655374, 1, 0, 655375, 1, 0, 655376, 1, 0, 655377, 1, 0, 655378, 1, 0, 655379, 1, 0, 720915, 1, 0, 720914, 1, 0, 720913, 1, 0, 720912, 1, 0, 720911, 1, 0, 720910, 1, 0, 720909, 1, 0, 720908, 1, 0, 720907, 1, 0, 720906, 1, 0, 720905, 1, 0, 720904, 1, 0, 720903, 1, 0, 720902, 1, 0, 720901, 1, 0, 720900, 1, 0, 720899, 1, 0, 720898, 1, 0, 720897, 1, 0, 720896, 1, 0, 786431, 65537, 0, 720895, 65537, 0, 655359, 65537, 0, 589823, 65537, 0, 524287, 65537, 0, 458751, 65537, 0, 458750, 65537, 0, 524286, 65537, 0, 589822, 65537, 0, 655358, 65537, 0, 720894, 65537, 0, 786430, 65537, 0, 589844, 65537, 0, 524308, 65537, 0, 458772, 65537, 0, 393236, 65537, 0, 327700, 65537, 0, 262164, 65537, 0, 196628, 65537, 0, 131092, 65537, 0, 655380, 65537, 0, 720916, 65537, 0, 720917, 65537, 0, 655381, 65537, 0, 589845, 65537, 0, 524309, 65537, 0, 458773, 65537, 0, 393237, 65537, 0, 327701, 65537, 0, 262165, 65537, 0, 196629, 65537, 0, 131093, 65537, 0, 65557, 65537, 0, 21, 65537, 0, 20, 65537, 0, 65556, 65537, 0, 524288, 1, 0)
 
 [node name="Node" type="Node2D" parent="." unique_id=2077973476]
 script = ExtResource("4_6bp64")

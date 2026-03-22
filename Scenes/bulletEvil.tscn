@@ -5,7 +5,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vgqql"]
 
 [node name="Bullet" type="CharacterBody2D" unique_id=378807127]
-collision_mask = 0
+collision_mask = 3
 script = ExtResource("1_sdapb")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=948850406]
