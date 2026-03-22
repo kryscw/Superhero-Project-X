@@ -11,19 +11,30 @@ var power
 var strength
 var magic
 var hometown
+@onready var main = get_tree().current_scene
 
-func _process(delta: float) -> void:
+var soundfont_em = ["hit_em", "hit_em2", "hit_em3", "hit_em4", "hit_em5"]
+var soundfont_sumit = ["enemy_hitsumit", "enemy_hitsumit2", "enemy_hitsumit3"]
+
+var soundfont = soundfont_em
+
+func _process(_delta: float) -> void:
 	$healthBar.value = remap(health, 0, maxHealth, 0.0, 100)
-	velocity = (player.global_position - global_position).normalized() * speed
-	velocity.y += 800
-	move_and_slide()
+	if main.gameStarted:
+		velocity = (player.global_position - global_position).normalized() * speed
+		velocity.y += 800
+		move_and_slide()
 	if health <= 0:
 		queue_free()
+		print("YOU WIN!")
+		main.win()
 
-func _on_damage_area_hit(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+func _on_damage_area_hit(_body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
 	if body is CharacterBody2D && body != player && body != self:
 		body.queue_free()
 		health -= damage
+		$Hit.stream = load("res://Audio/" + soundfont[randi_range(0, soundfont.size()-1)] + ".ogg")
+		$Hit.play()
 
 
 ## ── Pick a random enemy ─────────────────────────

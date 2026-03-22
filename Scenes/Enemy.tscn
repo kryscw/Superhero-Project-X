@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://3birffwrsrtu"]
 
 [ext_resource type="Script" uid="uid://c4bul6qo5nlqm" path="res://Scenes/enemy.gd" id="1_m1htj"]
+[ext_resource type="AudioStream" uid="uid://bxkoigjn3kvf7" path="res://Audio/enemy_hit.ogg" id="2_wovta"]
 
 [sub_resource type="Gradient" id="Gradient_m1htj"]
 offsets = PackedFloat32Array(0)
@@ -67,5 +68,8 @@ shape = SubResource("RectangleShape2D_wovta")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1676795548]
 shape = SubResource("RectangleShape2D_m1htj")
+
+[node name="Hit" type="AudioStreamPlayer" parent="." unique_id=1962226221]
+stream = ExtResource("2_wovta")
 
 [connection signal="body_shape_entered" from="damageArea" to="." method="_on_damage_area_hit"]

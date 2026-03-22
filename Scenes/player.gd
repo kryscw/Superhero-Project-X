@@ -13,6 +13,8 @@ var currentSpeed: float = 300.0
 var health: int = 100
 var dash: int = 100
 
+var active = false
+
 
 
 func _physics_process(delta: float) -> void:
@@ -43,7 +45,8 @@ func _physics_process(delta: float) -> void:
 		$Area2D/CollisionShape2D.disabled = false
 		$afterImage.emitting = false
 	
-	move_and_slide()
+	if active:
+		move_and_slide()
 	
 
 

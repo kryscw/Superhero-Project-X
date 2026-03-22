@@ -34,18 +34,21 @@ func _ready():
 
 		var is_villain = (is_villain_raw == "true")
 
-		var character = {
-			"name": data[0].strip_edges(),
-			"power": int(data[1]),
-			"strength": int(data[2]),
-			"magic": int(data[3]),
-			"hometown": data[13].strip_edges()
-		}
+		if !str(data[0]).to_lower().contains("woman") || !str(data[0]).to_lower().contains("girl"):
+			# We have no female voicelines so it would look weird lmao
 
-		if is_villain:
-			villains.append(character)
-		else:
-			heroes.append(character)
+			var character = {
+				"name": data[0].strip_edges(),
+				"power": int(data[1]),
+				"strength": int(data[2]),
+				"magic": int(data[3]),
+				"hometown": data[13].strip_edges()
+			}
+
+			if is_villain:
+				villains.append(character)
+			else:
+				heroes.append(character)
 
 	print("Heroes:", heroes.size())
 	print("Villains:", villains.size())
