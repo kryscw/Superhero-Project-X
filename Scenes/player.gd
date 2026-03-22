@@ -4,6 +4,7 @@ const ACCELERATION: float = 50.0
 const FRICTION: float = 25.0
 const GRAVITY: float = 20.0
 var currentSpeed: float = 300.0
+var damageDealing: int = 25
 
 @export var jumpHeight : float = 50.0
 @export var jumpTimeToPeak : float = 0.2
@@ -15,9 +16,11 @@ var dash: int = 100
 
 @onready var main = get_tree().current_scene
 
-
-
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
+	
+	if health <= 0:
+		$"../CanvasLayer/deathbeUponYe".show()
+		queue_free()
 	
 	$CanvasLayer/healthBar.value = health
 	
@@ -53,7 +56,6 @@ func _physics_process(delta: float) -> void:
 func calcJump():
 	if Input.is_action_just_pressed("jump") && is_on_floor():
 		velocity.y = jumpVelocity
-		#$jump.play()
 	else:
 		velocity.y += GRAVITY
 
@@ -69,9 +71,9 @@ func addFriction() -> void:
 	velocity.x = velocity.move_toward(Vector2.ZERO, FRICTION).x
 
 
-func damage_area_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
-	if body.name.contains("Enemy") || body.name.to_lower().contains("bullet"):
-		health -= body.damageDealing
+func damage_area_entered(_body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
+	if body.name.contains("Enemy"): health -= body.damageDealing
+	if body.is_in_group("evil bullets"): body.queue_free(); health -= 25
 
 
 func _on_dash_timer_timeout() -> void:

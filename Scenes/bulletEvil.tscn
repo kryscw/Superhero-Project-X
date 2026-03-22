@@ -4,8 +4,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vgqql"]
 
-[node name="Bullet" type="CharacterBody2D" unique_id=378807127]
-collision_mask = 3
+[node name="Bullet" type="CharacterBody2D" unique_id=378807127 groups=["evil bullets"]]
+collision_layer = 9
+collision_mask = 9
 script = ExtResource("1_sdapb")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=948850406]

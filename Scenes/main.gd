@@ -8,6 +8,7 @@ func _ready():
 	$CanvasLayer/AnimationPlayer.play("FadeIn")
 	await $CanvasLayer/AnimationPlayer.animation_finished
 	gameStarted = true
+	$Enemy.begin()
 
 func announceReady():
 	
@@ -31,3 +32,41 @@ func announceReady():
 func win():
 	$Die.play()
 	print("yo it's the main script here... you WON!?!?!?!?!?")
+	$CanvasLayer/ThreeChoices.show()
+
+func restartGame():
+	$CanvasLayer/ThreeChoices.hide()
+	gameStarted = false
+	var x = load("res://Scenes/Enemy.tscn").instantiate()
+	$CanvasLayer/newVillain.pitch_scale += 0.05
+	$Player.health = 100
+	x.global_position = Vector2(15, 15)
+	add_child(x)
+	$CanvasLayer/AnimationPlayer.play("FadeIn")
+	await $CanvasLayer/AnimationPlayer.animation_finished
+	gameStarted = true
+	$Enemy.begin()
+
+func _on_fire_rate_upgrade_pressed() -> void:
+	$Player/weaponRot/countdownTimer.wait_time -= 0.025
+	restartGame()
+	
+
+
+func _on_speed_upgrade_pressed() -> void:
+	$Player.currentSpeed += 50
+	restartGame()
+	
+
+
+func _on_damage_upgrade_pressed() -> void:
+	$Player.damageDealing += 5
+	restartGame()
+
+
+func _on_restart_pressed() -> void:
+	get_tree().reload_current_scene()
+
+
+func _on_menu_pressed() -> void:
+	get_tree().change_scene_to_file("res://Main_Menu.tscn")

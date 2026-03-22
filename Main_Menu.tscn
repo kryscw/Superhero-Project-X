@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://7hdhbd7fdbhf"]
 
 [ext_resource type="Script" uid="uid://dlstn7jh80fk" path="res://Main-Menu.gd" id="1_m625n"]
+[ext_resource type="Texture2D" uid="uid://cfg1n0hpr7m8f" path="res://Sprites/BA6EC9D5-308B-45D1-A2D4-69DAC48CC063.jpeg" id="2_dnfjo"]
 [ext_resource type="FontFile" uid="uid://bu4086b28uott" path="res://Fonts/Light Stories.ttf" id="2_gtid3"]
 [ext_resource type="AudioStream" uid="uid://c22vqxbdjpx4p" path="res://Audio/computerBG.mp3" id="2_wugcc"]
 
@@ -24,6 +25,11 @@ offset_top = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_m625n")
+
+[node name="nightstare" type="Sprite2D" parent="." unique_id=186098644]
+position = Vector2(651.00006, 356)
+scale = Vector2(0.841875, 0.8954802)
+texture = ExtResource("2_dnfjo")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1420163758]
 layout_mode = 1
@@ -49,15 +55,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_wtjmy")
 text = "Start Game
 "
 
-[node name="Button2" type="Button" parent="VBoxContainer" unique_id=317441591]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("2_gtid3")
-theme_override_font_sizes/font_size = 60
-theme_override_styles/normal = SubResource("StyleBoxFlat_wtjmy")
-text = "Options
-"
-
 [node name="Button3" type="Button" parent="VBoxContainer" unique_id=1595283801]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -79,12 +76,12 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_wugcc")
 
 [node name="Label" type="Label" parent="." unique_id=1072762290]
 layout_mode = 0
-offset_left = 4.0
-offset_top = 642.0
-offset_right = 1226.0
-offset_bottom = 759.0
+offset_left = 5.0
+offset_top = 659.0
+offset_right = 1227.0
+offset_bottom = 776.0
 theme_override_fonts/font = ExtResource("2_gtid3")
-theme_override_font_sizes/font_size = 31
+theme_override_font_sizes/font_size = 25
 text = "I assure you that despite this looking like AI it's actually just my terrible human work
 ~ Steve Jobless & Freshman Associates, No-Stack Developers"
 
@@ -93,6 +90,38 @@ stream = ExtResource("2_wugcc")
 pitch_scale = 0.9
 autoplay = true
 
+[node name="Label2" type="Label" parent="." unique_id=1888212877]
+layout_mode = 0
+offset_left = 384.0
+offset_top = 133.0
+offset_right = 913.0
+offset_bottom = 209.0
+theme_override_font_sizes/font_size = 55
+text = "Superhero Project X"
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=836797235]
+layout_mode = 0
+offset_left = 392.0
+offset_top = 429.0
+offset_right = 889.0
+offset_bottom = 618.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="ColorRect" unique_id=495224364]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 1.0
+offset_right = 488.0
+offset_bottom = 193.0
+theme_override_fonts/font = ExtResource("2_gtid3")
+theme_override_font_sizes/font_size = 33
+text = "CONTROLS:
+WASD/ARROW KEYS - MOVE
+C - DASH
+MOUSE1/X - SHOOT
+MOVE MOUSE TO POINT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button3" to="." method="_on_button_3_pressed"]

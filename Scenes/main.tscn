@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cfg1n0hpr7m8f" path="res://Sprites/BA6EC9D5-308B-45D1-A2D4-69DAC48CC063.jpeg" id="4_hptm8"]
 [ext_resource type="Texture2D" uid="uid://bhclvq51v71y1" path="res://Sprites/tilemaps.png" id="8_d1ilt"]
 [ext_resource type="AudioStream" uid="uid://slf1veyn42y1" path="res://Audio/villainpasta.mp3" id="9_ynf5e"]
+[ext_resource type="FontFile" uid="uid://bu4086b28uott" path="res://Fonts/Light Stories.ttf" id="11_6iyac"]
 [ext_resource type="Script" uid="uid://bdpeh7vjwjseh" path="res://Scenes/ShakyCam.gd" id="11_d1ilt"]
 
 [sub_resource type="Gradient" id="Gradient_21xkr"]
@@ -157,7 +158,7 @@ _data = {
 [node name="Main" type="Node2D" unique_id=721105279]
 script = ExtResource("1_6bp64")
 
-[node name="Ba6ec9d5308b45d1A2d469dac48cc063" type="Sprite2D" parent="." unique_id=2130203964]
+[node name="nightstare" type="Sprite2D" parent="." unique_id=2130203964]
 position = Vector2(642.00006, 457.00003)
 scale = Vector2(0.841875, 0.8954802)
 texture = ExtResource("4_hptm8")
@@ -204,6 +205,24 @@ show_percentage = false
 [node name="dashTimer" type="Timer" parent="Player/CanvasLayer" unique_id=1434281301]
 wait_time = 0.1
 
+[node name="Label" type="Label" parent="Player/CanvasLayer" unique_id=1508808320]
+offset_left = 90.0
+offset_top = 635.0
+offset_right = 162.0
+offset_bottom = 708.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 53
+text = "HP"
+
+[node name="Label2" type="Label" parent="Player/CanvasLayer" unique_id=341116924]
+offset_left = 37.0
+offset_top = 602.0
+offset_right = 109.0
+offset_bottom = 675.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "DASH"
+
 [node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=1137542419]
 position = Vector2(20, 39)
 scale = Vector2(0.089711346, 0.089711346)
@@ -225,12 +244,12 @@ offset_bottom = 7.0
 color = Color(0, 0, 0, 1)
 
 [node name="countdownTimer" type="Timer" parent="Player/weaponRot" unique_id=1151287675]
-wait_time = 0.15
+wait_time = 0.25
 one_shot = true
 
 [node name="Area2D" type="Area2D" parent="Player" unique_id=1190099923]
-collision_layer = 3
-collision_mask = 2
+collision_layer = 11
+collision_mask = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Area2D" unique_id=702342402]
 position = Vector2(20, 40)
@@ -286,6 +305,75 @@ libraries/ = SubResource("AnimationLibrary_344ge")
 
 [node name="newVillain" type="AudioStreamPlayer" parent="CanvasLayer" unique_id=1486218220]
 
+[node name="ThreeChoices" type="Node2D" parent="CanvasLayer" unique_id=2053994642]
+visible = false
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/ThreeChoices" unique_id=1187624268]
+offset_right = 1281.0
+offset_bottom = 720.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ThreeChoices/CenterContainer" unique_id=1683324919]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="fireRateUpgrade" type="Button" parent="CanvasLayer/ThreeChoices/CenterContainer/HBoxContainer" unique_id=800939362]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("11_6iyac")
+theme_override_font_sizes/font_size = 43
+text = "Upgrade Fire Rate"
+
+[node name="speedUpgrade" type="Button" parent="CanvasLayer/ThreeChoices/CenterContainer/HBoxContainer" unique_id=477913096]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("11_6iyac")
+theme_override_font_sizes/font_size = 43
+text = "Upgrade Speed"
+
+[node name="damageUpgrade" type="Button" parent="CanvasLayer/ThreeChoices/CenterContainer/HBoxContainer" unique_id=241627870]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("11_6iyac")
+theme_override_font_sizes/font_size = 43
+text = "Upgrade Damage"
+
+[node name="Label" type="Label" parent="CanvasLayer/ThreeChoices" unique_id=1148754993]
+offset_left = 396.0
+offset_top = 175.0
+offset_right = 913.0
+offset_bottom = 300.0
+theme_override_fonts/font = ExtResource("11_6iyac")
+theme_override_font_sizes/font_size = 44
+text = "You defeated this boss...
+now pick a reward!!!"
+horizontal_alignment = 1
+
+[node name="deathbeUponYe" type="Node2D" parent="CanvasLayer" unique_id=539500791]
+visible = false
+
+[node name="Label" type="Label" parent="CanvasLayer/deathbeUponYe" unique_id=1372498174]
+offset_right = 1280.0
+offset_bottom = 641.0
+theme_override_fonts/font = ExtResource("11_6iyac")
+theme_override_font_sizes/font_size = 125
+text = "YOU DIED!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_trim_flags = 128
+
+[node name="restart" type="Button" parent="CanvasLayer/deathbeUponYe" unique_id=973322356]
+offset_left = 562.0
+offset_top = 373.0
+offset_right = 721.0
+offset_bottom = 440.0
+theme_override_font_sizes/font_size = 43
+text = "Restart"
+
+[node name="menu" type="Button" parent="CanvasLayer/deathbeUponYe" unique_id=385835443]
+offset_left = 502.0
+offset_top = 461.0
+offset_right = 793.0
+offset_bottom = 528.0
+theme_override_font_sizes/font_size = 43
+text = "Back to Menu"
+
 [node name="Camera2D" type="Camera2D" parent="." unique_id=823699219]
 position = Vector2(642, 360)
 script = ExtResource("11_d1ilt")
@@ -293,3 +381,8 @@ script = ExtResource("11_d1ilt")
 [connection signal="timeout" from="Player/CanvasLayer/dashTimer" to="Player" method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="Player/weaponRot/countdownTimer" to="Player/weaponRot" method="_on_countdown_timer_timeout"]
 [connection signal="body_shape_entered" from="Player/Area2D" to="Player" method="damage_area_entered"]
+[connection signal="pressed" from="CanvasLayer/ThreeChoices/CenterContainer/HBoxContainer/fireRateUpgrade" to="." method="_on_fire_rate_upgrade_pressed"]
+[connection signal="pressed" from="CanvasLayer/ThreeChoices/CenterContainer/HBoxContainer/speedUpgrade" to="." method="_on_speed_upgrade_pressed"]
+[connection signal="pressed" from="CanvasLayer/ThreeChoices/CenterContainer/HBoxContainer/damageUpgrade" to="." method="_on_damage_upgrade_pressed"]
+[connection signal="pressed" from="CanvasLayer/deathbeUponYe/restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="CanvasLayer/deathbeUponYe/menu" to="." method="_on_menu_pressed"]
